@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Proyecto React</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+      <h2>Proyecto React</h2>
+      <div id="texto"></div>
+
+      <script type="text/babel">
+
+        //componente principal
+        class Principal extends React.Component{
+          constructor(){
+            super()
+            this.state = {
+              numero: 0
+            }
+          }
+
+          masUno(){
+            this.setState({numero: this.state.numero+1});
+          }
+
+          menosUno(){
+            this.setState({numero: this.state.numero-1});
+          }
+
+          render(){
+            return (
+                <div>
+                  <h2>Hola desde componente React </h2>
+                  <IntroducirTexto/>
+                  <h2>{this.state.numero}</h2>
+                  <AumentarNumber 
+                    numero={this.state.numero}
+                    funcAumentar={
+                      this.masUno.bind(this)
+                    }    
+                     />
+                  <RestarNumber
+                    funcRestar={
+                      this.menosUno.bind(this)
+                    }
+                  />
+                </div>
+              );
+          }
+        }
+
+        //componente boton sumar
+        class AumentarNumber extends React.Component{
+          constructor(){
+            super();
+          }
+
+          render(){
+            return(
+              <div>
+                <button onClick={this.props.funcAumentar}>Aumentar</button>
+              </div>
+            );
+            /*<p>{ this.props.numero }</p>*/
+          }
+        }
+
+        class RestarNumber extends React.Component{
+          constructor(){
+            super();
+          }
+          render(){
+            return(
+              <div>
+                <button onClick={this.props.funcRestar}>Restar</button>
+              </div>
+            );
+          }
+        }
+
+        class IntroducirTexto extends React.Component{
+          constructor(){
+            super();
+            this.state={
+              nombre: 'aqui va tu nombre'
+            }
+          }
+
+          cambiarNombre(evento){
+            //console.log(evento.target.value);
+            this.setState({nombre: evento.target.value});
+          }
+
+          render(){
+              return(
+                <div>
+                  <h4>Saludos { this.state.nombre }</h4>
+                  <input onChange={ this.cambiarNombre.bind(this) } />
+                  <h2>Texto desde otro componente </h2>
+                </div>
+              );
+          }
+        }
+
+        ReactDOM.render(
+          <Principal/>,
+          document.getElementById('texto')
+        );
+      </script>
+  </body>
+</html>
