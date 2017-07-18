@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import VarPrincipalData from './PrincipalData';
 
-class MasUno extends Component{
-    otraFuncion(){
-        console.log(VarPrincipalData);
-    }
+class MenosUno extends Component{
     render(){
         return(
             <div>
                 <button 
                     onClick={
                         function (){
-                            VarPrincipalData.aumentarNumero()
+                            VarPrincipalData.disminuirNumero()
                         }
                     }
                     >
-                    Aumentar
-                </button>
+                    Disminuir 
+                </button> 
             </div>
         );
     }
 }
 
-export default MasUno;
+export default MenosUno;

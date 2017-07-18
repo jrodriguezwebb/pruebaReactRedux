@@ -10,6 +10,10 @@ class PrincipalData{
     aumentarNumero(){
         this.numero = this.numero + 1;
     }
+
+    disminuirNumero(){
+        this.numero = this.numero - 1;
+    }
 }
 
 var VarPrincipalData = new PrincipalData();
